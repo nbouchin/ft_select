@@ -6,11 +6,34 @@
 /*   By: nbouchin <nbouchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 14:08:18 by nbouchin          #+#    #+#             */
-/*   Updated: 2017/05/18 16:43:59 by nbouchin         ###   ########.fr       */
+/*   Updated: 2017/05/18 17:22:30 by nbouchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+/*
+**      print selection
+*/
+
+void		print_select(t_list ***l, t_cursor ***c, int tty, char buffer[6])
+{
+	(void)c;
+	(void)buffer;
+	(void)tty;
+	reset_termios();
+	close(g_va.tty);
+	while (**l)
+	{
+		if (((t_select*)(**l)->cont)->hl)
+		{
+			ft_putstr_fd(((t_select*)(**l)->cont)->argn, 1);
+			ft_putchar_fd(' ', 1);
+		}
+		(**l) = (**l)->nxt;
+	}
+	exit(0);
+}
 
 /*
 **	pace in function of the max_size

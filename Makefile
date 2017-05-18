@@ -6,7 +6,7 @@
 #    By: nbouchin <nbouchin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 12:55:49 by nbouchin          #+#    #+#              #
-#    Updated: 2017/05/18 14:11:54 by nbouchin         ###   ########.fr        #
+#    Updated: 2017/05/18 17:16:31 by nbouchin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ HEADER	= include/
 LIBSRC	= libft/
 SRCDIR	= src/
 OBJDIR	= obj/
-SRC		= ft_select.c	list_utils.c	term_mode.c		key_utils.c print_utils.c
+SRC		= ft_select.c	list_utils.c		term_mode.c		key_utils.c		print_utils.c \
+		  arrow_utils.c	perfect_collumn.c	node_utils.c	signal_utils.c	
 
 # colors
 
