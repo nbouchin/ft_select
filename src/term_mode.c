@@ -6,7 +6,7 @@
 /*   By: nbouchin <nbouchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 15:44:58 by nbouchin          #+#    #+#             */
-/*   Updated: 2017/05/19 11:46:45 by nbouchin         ###   ########.fr       */
+/*   Updated: 2017/05/19 11:49:24 by nbouchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	error(char *name_term)
 {
 	if (tgetent(NULL, name_term) < 0)
 	{
+		ft_putchar_fd('"', 2);
 		ft_putstr_fd(name_term, 2);
-		ft_putstr_fd(" name is not recognise as a TERM, ", 2);
+		ft_putchar_fd('"', 2);
+		ft_putstr_fd(" TERM name is not recognise as a valid TERM, ", 2);
 		ft_putendl_fd("please set a valid TERM name.", 2);
 	}
 	else if (tgetent(NULL, name_term) == 0)
@@ -38,7 +40,7 @@ int		set_termios(void)
 
 	if ((name_term = getenv("TERM")) == NULL)
 	{
-		ft_putendl_fd("Please set a valid environment.", 2);
+		ft_putendl_fd("NULL environment, please set a valid environment.", 2);
 		exit(0);
 	}
 	if (tgetent(NULL, name_term) <= 0)
