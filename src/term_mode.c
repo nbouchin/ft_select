@@ -6,15 +6,24 @@
 /*   By: nbouchin <nbouchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 15:44:58 by nbouchin          #+#    #+#             */
-/*   Updated: 2017/05/18 16:44:09 by nbouchin         ###   ########.fr       */
+/*   Updated: 2017/05/19 11:46:45 by nbouchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	error(void)
+void	error(char *name_term)
 {
-	ft_putendl_fd("Unknown error.", 2);
+	if (tgetent(NULL, name_term) < 0)
+	{
+		ft_putstr_fd(name_term, 2);
+		ft_putstr_fd(" name is not recognise as a TERM, ", 2);
+		ft_putendl_fd("please set a valid TERM name.", 2);
+	}
+	else if (tgetent(NULL, name_term) == 0)
+		ft_putendl_fd("TERM name is NULL, please set a valid TERM name.", 2);
+	else
+		ft_putendl_fd("Unknown error.", 2);
 	exit(0);
 }
 
@@ -32,17 +41,14 @@ int		set_termios(void)
 		ft_putendl_fd("Please set a valid environment.", 2);
 		exit(0);
 	}
-	if (tgetent(NULL, name_term) == 0)
-	{
-		ft_putendl_fd("Please set a valid TERM.", 2);
-		exit(0);
-	}
-	(tcgetattr(0, &term) == -1) ? error() : 0;
+	if (tgetent(NULL, name_term) <= 0)
+		error(name_term);
+	(tcgetattr(0, &term) == -1) ? error(name_term) : 0;
 	term.c_lflag &= ~(ICANON);
 	term.c_lflag &= ~(ECHO);
 	term.c_cc[VMIN] = 1;
 	term.c_cc[VTIME] = 0;
-	(tcsetattr(0, TCSADRAIN, &term) == -1) ? error() : 0;
+	(tcsetattr(0, TCSADRAIN, &term) == -1) ? error(name_term) : 0;
 	ft_putstr_fd(tgetstr("ti", NULL), g_va.tty);
 	ft_putstr_fd(tgetstr("vi", NULL), g_va.tty);
 	ft_putstr_fd(tgetstr("cl", NULL), g_va.tty);
