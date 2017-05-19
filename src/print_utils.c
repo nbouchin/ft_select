@@ -6,7 +6,7 @@
 /*   By: nbouchin <nbouchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 14:08:18 by nbouchin          #+#    #+#             */
-/*   Updated: 2017/05/18 17:22:30 by nbouchin         ###   ########.fr       */
+/*   Updated: 2017/05/18 18:01:54 by nbouchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void		print_list(t_list **l, t_cursor **c, char buffer[6])
 	if (((t_select*)(*l)->cont)->max_size == 0)
 		return ;
 	x = ws.ws_col / ((((t_select*)(*l)->cont)->max_size));
-	if ((g_va.col = x - 2) == 0)
+	if ((g_va.col = x - 2) <= 0)
 		return ;
 	while (*l)
 	{

@@ -6,7 +6,7 @@
 /*   By: nbouchin <nbouchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 16:57:27 by nbouchin          #+#    #+#             */
-/*   Updated: 2017/05/18 17:19:12 by nbouchin         ###   ########.fr       */
+/*   Updated: 2017/05/19 11:28:26 by nbouchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 void	perfect_print(int temp, t_cursor ***c, t_list ***l)
 {
+	if (g_va.col == 0)
+		return ;
 	if (g_va.col == 1)
 	{
 		if (temp == 0)
